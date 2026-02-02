@@ -4,7 +4,9 @@
  */
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const userModel = require("./model/user.model");
+app.use(cors());
 app.use(express.json());
 
 /**
