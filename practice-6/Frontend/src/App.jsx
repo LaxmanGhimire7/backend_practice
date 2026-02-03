@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [product, setProduct] = useState([]);
+
+  const fetchData = () => {
+    axios.get("http://localhost:3000/api/product").then((res) => {
+      console.log(res.data);
+      setProduct(res.data.products);
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const {productName,productDescription,rating,price,image} = e.target.elements
+    // const data = e.target.elements;
+    axios.post("http://localhost:3000/api/product", {
+      productName: productName.value,
+      productDescription: productDescription.value,
+      rating: rating.value,
+      price: price.value,
+      image: image.value,
+    });
+  };
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <main>
+        <div className="create-product">
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="image" placeholder="Image URL" />
+            <input
+              type="text"
+              name="productName"
+              placeholder="Product's Name"
+            />
+            <input
+              type="text"
+              name="productDescription"
+              placeholder="Product's Description"
+            />
+            <input type="number" name="price" placeholder="Give Price" />
+            <input type="number" name="rating" placeholder="Give rating" />
+            <button>Create Product</button>
+          </form>
+        </div>
 
-export default App
+        <div className="products-card">
+          {product.map((item) => {
+            return (
+              <div key={item._id} className="product">
+                <img src={item.image} alt="" />
+                <h1>{item.productName}</h1>
+                <p>{item.productDescription}</p>
+                <p>{item.price}</p>
+                <p>{item.rating}</p>
+              </div>
+            );
+          })}
+        </div>
+      </main>
+    </>
+  );
+};
+
+export default App;
