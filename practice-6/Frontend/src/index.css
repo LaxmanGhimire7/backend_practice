@@ -44,9 +44,8 @@ main {
   gap: 2rem;
 }
 
-.products-card .product button{
+.product button{
   padding: 1rem;
-  width: 100%;
   margin-top: 0.3rem;
   background-color: red;
   font-size: 1.3rem;
@@ -54,6 +53,11 @@ main {
   border: none;
   border-radius: 0.3rem;
   
+}
+
+.buttons{
+  display: flex;
+  gap: 1rem;
 }
 .products-card .product button:active{
   scale: 0.95;

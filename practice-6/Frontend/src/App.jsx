@@ -42,7 +42,16 @@ const App = () => {
      })
   }
 
+const handleEdit = (id) =>{
 
+  const {productName, price, rating} = req.body;
+   axios.patch(`http://localhost:3000/api/product/${id}`,{
+    productName,price,rating
+   })
+   .then(res=>{
+    console.log(res.data)
+   })
+}
 
 
   return (
@@ -76,9 +85,14 @@ const App = () => {
                 <p>{item.productDescription}</p>
                 <p>{item.price}</p>
                 <p>{item.rating}</p>
-                <button onClick={()=>{
+                <div className="buttons">
+                  <button onClick={()=>{
                   handleDelete(item._id)
                 }}>Delete Product</button>
+                <button onClick={()=>{
+                  handleEdit(item._id)
+                }}>Edit Product</button>
+                </div>
               </div>
             );
           })}
