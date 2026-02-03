@@ -25,3 +25,16 @@ html, body,#root {
   padding: 1rem;
   border-radius: 0.5rem;
 }
+
+.create-user-form{
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: black;
+  border-radius: 0.5rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+

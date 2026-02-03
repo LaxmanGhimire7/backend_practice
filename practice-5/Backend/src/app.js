@@ -6,8 +6,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors")
 const userModel = require("./model/user.model");
+const path = require("path")
 app.use(cors());
 app.use(express.json());
+app.use(express.static('./public'))
 
 /**
  * POST -> Create user and store in database
@@ -67,6 +69,10 @@ app.patch("/api/user/:id",async(req,res)=>{
     res.status(200).json({
         message:"User updated successfully..."
     })
+})
+
+app.use("*name",(req,res)=>{
+    res.sendFile(path.join(__dirname,"..","/public/index.html"))
 })
 
 module.exports = app;
