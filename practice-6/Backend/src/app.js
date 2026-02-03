@@ -6,9 +6,13 @@ const express = require("express");
 const app = express();
 const productModel = require("./model/product.model");
 const cors = require("cors")
+const path = require("path")
+
 
 app.use(cors())
 app.use(express.json());
+app.use(express.static("./public"))
+
 
 /**
  * - POST /api/notes
@@ -78,6 +82,15 @@ app.patch("/api/product/:id", async (req, res) => {
         message: "Product updated successfully....",
     });
 });
+
+
+/**
+ * wild card route
+ */
+
+app.use("*name",(req,res)=>{
+    res.sendFile(path.join(__dirname,"..","/public/index.html"))
+})
 
 
 module.exports = app;
