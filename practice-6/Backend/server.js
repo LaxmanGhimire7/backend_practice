@@ -2,7 +2,7 @@
  * server run garne
  * database config
  */
-
+require("dotenv").config()
 const app = require("./src/app");
 const connectToDb = require("./src/config/database")
 
