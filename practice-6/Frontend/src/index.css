@@ -37,11 +37,26 @@ main {
 }
 
 .products-card {
-  width: 80rem;
+  width: 75rem;
   height: fit-content;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+}
+
+.products-card .product button{
+  padding: 1rem;
+  width: 100%;
+  margin-top: 0.3rem;
+  background-color: red;
+  font-size: 1.3rem;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  
+}
+.products-card .product button:active{
+  scale: 0.95;
 }
 
 .product {
@@ -64,8 +79,8 @@ main {
 }
 
 .create-product {
-  background-color: green;
-  width: 20rem;
+  background-color: rgb(255, 255, 255);
+  width: 25rem;
   padding: 1rem;
   border-radius: 0.4rem;
   height: fit-content;
@@ -78,7 +93,7 @@ main {
 }
 
 .create-product form input {
-  padding-block: 0.4rem;
+  padding-block: 0.6rem;
   padding-inline: 1rem;
   border-radius: 0.3rem;
   outline: none;

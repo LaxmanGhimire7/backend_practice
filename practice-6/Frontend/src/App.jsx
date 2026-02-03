@@ -8,7 +8,7 @@ const App = () => {
 
   const fetchData = () => {
     axios.get("http://localhost:3000/api/product").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setProduct(res.data.products);
     });
   };
@@ -27,8 +27,22 @@ const App = () => {
       rating: rating.value,
       price: price.value,
       image: image.value,
-    });
+    })
+    .then(res=>{
+      console.log(res.data)
+      fetchData()
+    })
   };
+
+  const handleDelete = (productId) =>{
+     console.log(productId)
+     axios.delete(`http://localhost:3000/api/product/${productId}`)
+     .then(res=>{
+      fetchData()
+     })
+  }
+
+
 
 
   return (
@@ -62,6 +76,9 @@ const App = () => {
                 <p>{item.productDescription}</p>
                 <p>{item.price}</p>
                 <p>{item.rating}</p>
+                <button onClick={()=>{
+                  handleDelete(item._id)
+                }}>Delete Product</button>
               </div>
             );
           })}
