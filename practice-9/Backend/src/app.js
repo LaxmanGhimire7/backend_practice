@@ -24,7 +24,23 @@ app.get("/api/product",async(req,res)=>{
     })
 })
 
+app.delete("/api/product/:id",async(req,res)=>{
+    console.log(req.params.id)
+    const id = req.params.id;
+    await productModel.findByIdAndDelete(id);
+    res.status(200).json({
+        message:"Product deleted successfully.."
+    })
+})
 
-
+app.patch("/api/product/:id",async(req,res)=>{
+    const id = req.params.id;
+    const {productName,price} = req.body;
+    await productModel.findByIdAndUpdate(id,{productName,price})
+    res.status(200).json({
+        message:"Product Updated successfully",
+       
+    })
+})
 
 module.exports = app;
