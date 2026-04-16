@@ -1,11 +1,12 @@
- /** 
-  * server lai start garne listen garne server.js bata
-  * 
+/**
+ * server lai start garne listen garne server.js bata
+ *
  */
- const app = require("./src/app");
+require("dotenv").config();
+const app = require("./src/app");
+const connectToDb = require("./src/Config/database");
+connectToDb();
 
-
-
- app.listen(3000,()=>{
-    console.log("Server is running on port 3000...")
- })
+app.listen(3000, () => {
+  console.log("Server is running on port 3000...");
+});
